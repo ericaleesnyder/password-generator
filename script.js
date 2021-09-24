@@ -31,33 +31,57 @@ function generatePassword() {
   var passLength = prompt("Please enter a number between 8 and 128 to specify password length"); 
   console.log(passLength);
   
-  if (passLength > 8 && passLength < 128) {
-    // confirm user wants lowercase letters
-    // let useLowerCase <- confirm result
-    var useLowerCase = confirm ("Would you like to use Lower Case letters?");
-    console.log(useLowerCase);
-    
-    // confirm user wants uppercase letters
-    // let useUpperCase <- confirm result
-    var useUpperCase = confirm ("Would you like to use Upper Case letters?");
-    console.log(useUpperCase);
-    
-    // confirm user wants numbers
-    // let useNubmers <- confirm result
-    var useNumbers = confirm ("Would you like to use numbers?");
-    console.log(useNumbers);
-    
-    var useSpecial = confirm ("Would you like to use special characters?")
-    console.log(useSpecial);
-    } else {
+  var useLowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+  var useUpperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+
+  var useNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+  var useSpecial = ["!", "@", "#", "$", "%", "^", "&", "*", "+", "_", "-", "~"];
+
+  if (passLength < 8 || passLength > 128) {
     alert("Your password must be betwen 8 and 128 characters.")
     return generatePassword();
-    }
+  }
+
+  var charTypes = []
+
+  if (confirm("Would you like to use Lower Case letters?")) {
+    charTypes = charTypes.concat(useLowerCase)
+  }
   
+  if (confirm("Would you like to use Upper Case letters?")) {
+    charTypes = charTypes.concat(useUpperCase)
+  }
+
+  if (confirm("Would you lik to use Numbers?")) {
+    charTypes = charTypes.concat(useNumbers)
+  }
+
+  if (confirm("Would you lik to use Special Characters?")) {
+    charTypes = charTypes.concat(useSpecial)
+  }
+
+  if (charTypes.length === 0) {
+    alert("You must choose at least one character type.")
+    return generatePassword();
+  }
   // TODO: Your code to generate a password goes here. Be sure to return a password
   // string. You will need to change the following two lines of code.
+  
+  var password = ""
 
-  var password = "password1234";
+  var length = passLength;
+  for (var i = 0; i < length; ++i) {
+    password += charTypes[Math.floor(Math.random() * charTypes.length)];
+  }
+ 
+
+  // function getRandomInt(max) {
+  //   return Math.floor(Math.random() * max);
+  // }
+
+  var password = password;
   return password;
 }
 
