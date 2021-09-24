@@ -1,4 +1,5 @@
-// Assignment Code
+// NOTE: Much of this code was worked out in conjunction with Ivo Gatzinski and Elena Liu
+
 var generateBtn = document.querySelector("#generate");
 
 function generatePassword() {
